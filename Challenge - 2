@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract FunctionExamples {
+    uint256 public balance;
+    constructor() {
+        balance = 10;
+    }
+
+    function getBalance() public view returns (uint256) {
+        return balance;
+    }
+    function addNumbers(uint256 a, uint256 b) public pure returns (uint256) {
+        return a + b;
+    }
+    function deposit() public payable {
+        balance += msg.value;
+    }
+}
+
+contract DerivedContract is FunctionExamples {
+    function derivedGetBalance() public view returns (uint256) {
+        return getBalance();
+    }
+    function derivedAddNumbers(uint256 a, uint256 b) public pure returns (uint256) {
+        return addNumbers(a, b);
+    }
+    function derivedDeposit() public payable {
+        deposit();
+    }
+}
+
