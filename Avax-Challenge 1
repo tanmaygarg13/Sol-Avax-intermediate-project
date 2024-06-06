@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract StorageC {
+    struct LotteryNumber {
+        uint256 Lnumber;
+        string selection;
+    }
+    mapping(address => LotteryNumber) public lotteryNumbers;
+
+    function setLotteryNumber(uint256 _Lnumber, string memory _selection) public {
+        lotteryNumbers[msg.sender] = LotteryNumber(_Lnumber, _selection);
+    }
+
+    function getLotteryNumber(address _address) public view returns (uint256, string memory) {
+        LotteryNumber storage lotteryNumber = lotteryNumbers[_address];
+        return (lotteryNumber.Lnumber, lotteryNumber.selection);
+    }
+
+    function multiply(uint256 num) external pure returns (uint256) {
+        uint256 result = num * num;
+        return result;
+    }
+}
